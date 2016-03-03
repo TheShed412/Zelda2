@@ -1,0 +1,236 @@
+fileFormatVersion: 2
+guid: 852cdff4fb4d3474f8f6ae77f0f8b450
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: idle
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 807
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walk1
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 808
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walk2
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 808
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: walk3
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 810
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jumpAir
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 809
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: crouch/jumpLand
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 810
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: attack1/3
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 809
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: attack2
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 738
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: LinkUnitySpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 743
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: crouchAttack
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 742
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: unarmed
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 743
+        width: 32
+        height: 31
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: linkass
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 739
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: linkVictory
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 740
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: upStab
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 742
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: downStab
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 743
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dam1
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 668
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dam2
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 671
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dam3
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 673
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dam4
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 674
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: .25999999, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
