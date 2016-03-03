@@ -26,6 +26,9 @@ public class LinkControllerScript : MonoBehaviour {
 	bool movement = true;
 	bool quickAttack = false;
 
+	bool falling = false;
+	bool rising = false;
+
 	//These are for linecasting which is explained later
 	public Transform groundCheck;
 	public Transform lineStart, lineEnd;
@@ -72,15 +75,26 @@ public class LinkControllerScript : MonoBehaviour {
 		crouch = Input.GetButton ("Vertical");
 		//move = Input.GetAxis ("Horizontal");
 
+		if((GetComponent<Rigidbody2D>().velocity.y)>0){
+			rising = true;
+			falling = false;
+		}//if
+		else if ((GetComponent<Rigidbody2D>().velocity.y)<0){
+			falling = true;
+			rising = false;
+		}else{
+			falling = false;
+			rising = false;
+		}//else if
+
 		if (movement == true) {
 			GetComponent<Rigidbody2D>().velocity = new Vector2 (move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 			move = Input.GetAxis ("Horizontal");
-		}
-
+		}//if
 		if (movement == false) {
 			GetComponent<Rigidbody2D>().velocity = new Vector2 (0, GetComponent<Rigidbody2D>().velocity.y);
 			move = 0;
-		}
+		}//if
 
 		/*CROUCHING*/
 		if (!crouch) {
@@ -88,19 +102,26 @@ public class LinkControllerScript : MonoBehaviour {
 				//I set the colliders back to the original positions
 				linkBox.size = new Vector2(0.14f, 0.3f);
 				shieldBox.offset = new Vector2(0.04f, 0.06f);
+                linkBox.offset = new Vector2(0.0f, 0.0f);
 				movement = true;
 		}
 
-		if (crouch) {
+		if ((crouch && grounded && !attack) || rising) {
 			//I change the size of link's collider and shift the shield collider down
 			//I also set the horizontal movement to 0.
-			GetComponent<Rigidbody2D>().velocity = new Vector2 (0, GetComponent<Rigidbody2D>().velocity.y);
 			linkBox.size = new Vector2(0.14f, 0.25f);
+            linkBox.offset = new Vector2(0.0f, -0.02f);
 			shieldBox.offset = new Vector2(0.04f, -0.09f);
-			movement = false;
+			if (crouch && grounded && !attack){
+				movement = false;
+				GetComponent<Rigidbody2D>().velocity = new Vector2 (0, GetComponent<Rigidbody2D>().velocity.y);
+				move = 0;
+			}else{
+				movement = true;
+				move = Input.GetAxis ("Horizontal");
+			}//else if
 		}
 		/*CROUCHING*/
-
 
 
 		/*FANCY STUFF I DIDN'T FIGURE OUT ON MY OWN*/
@@ -140,8 +161,8 @@ public class LinkControllerScript : MonoBehaviour {
 				movement = false;
 			if(!grounded){
 				movement = true;
-			}
-		}
+			}//if
+		}//if
 	
 		if ((Time.time - attackOnce) >= attackTime) {
 						attack = false;
