@@ -26,7 +26,6 @@ public class LinkControllerScript : MonoBehaviour {
 	bool movement = true;
 	bool quickAttack = false;
 
-	bool falling = false;
 	bool rising = false;
 
 	//These are for linecasting which is explained later
@@ -38,15 +37,18 @@ public class LinkControllerScript : MonoBehaviour {
 	 Link has a shield that I have set as a trigger for reasons I will explain later.*/
 	public GameObject Link;
 	public GameObject Shield;
+	public GameObject Sword;
 
 	private BoxCollider2D linkBox;
 	private BoxCollider2D shieldBox;
+	private BoxCollider2D swordBox;
 
 
 	void Awake (){
 		/*These initialize the Game Objects above when Link shows up on screen*/
 		linkBox = Link.GetComponent<BoxCollider2D>();
 		shieldBox = Shield.GetComponent<BoxCollider2D>();
+		swordBox = Sword.GetComponent<BoxCollider2D>();
 		}//Awake
 
 	// Use this for initialization
@@ -77,19 +79,16 @@ public class LinkControllerScript : MonoBehaviour {
 
 		if((GetComponent<Rigidbody2D>().velocity.y)>0){
 			rising = true;
-			falling = false;
 		}//if
 		else if ((GetComponent<Rigidbody2D>().velocity.y)<0){
-			falling = true;
 			rising = false;
 		}else{
-			falling = false;
 			rising = false;
 		}//else if
 
 		if (movement == true) {
-			GetComponent<Rigidbody2D>().velocity = new Vector2 (move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 			move = Input.GetAxis ("Horizontal");
+			GetComponent<Rigidbody2D>().velocity = new Vector2 (move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 		}//if
 		if (movement == false) {
 			GetComponent<Rigidbody2D>().velocity = new Vector2 (0, GetComponent<Rigidbody2D>().velocity.y);
@@ -136,7 +135,7 @@ public class LinkControllerScript : MonoBehaviour {
 	void Update()
 	{
 		if (Link.GetComponent<BoxCollider2D> () != null) {
-						Raycasting ();//go to Raycasting()
+			Raycasting ();//go to Raycasting()
 		}
 
 		/*The jumping controls. Probably need a little work. 
@@ -151,7 +150,7 @@ public class LinkControllerScript : MonoBehaviour {
 		/*I am in a similar boat with this. It will neeed to be changed but I'm too busy
 		 getting the animations not to suck. These last two ifs are for the attack btw*/
 
-		if(Input.GetKeyDown (KeyCode.L)){
+		if(Input.GetKeyDown (KeyCode.L)&&grounded){
 			attack = true;
 			attackOnce = Time.time;
 		}			
@@ -165,24 +164,22 @@ public class LinkControllerScript : MonoBehaviour {
 		}//if
 	
 		if ((Time.time - attackOnce) >= attackTime) {
-						attack = false;
-						movement = true;
-				}
+			attack = false;
+			movement = true;
+		}//if
+
+		if ((Time.time - attackOnce) >= (attackTime/2)){
+			swordBox.offset = new Vector2(-0.05f, 0.06f);
+		}//
+
 
 	}//Update
 
 	//Sends a ray out in front of link to detect foreground objects
 	void Raycasting()
 	{
-		/*THIS is that 8 hour bug fix I was dealing with last week! it looks simple but like, It was a bitch to figure out. 
-		 Basically I am casting a line down the front of Link that, when it comes in contact with a collider in
-		 the foreground layer, sets Links friction to 0 letting him just slide down the wall instead of getting stuck. 
-		 */
-
-		if(Physics2D.Linecast(lineStart.position, lineEnd.position,1<<LayerMask.NameToLayer ("Foreground")))
-		{
+		if(Physics2D.Linecast(lineStart.position, lineEnd.position,1<<LayerMask.NameToLayer ("Foreground"))){
 			Link.GetComponent<Collider2D>().sharedMaterial = wallSlip;
-
 		}//Foreground if
 	}//Raycasting
 
@@ -194,8 +191,18 @@ public class LinkControllerScript : MonoBehaviour {
 		theScale.x *= -1;
 		transform.localScale = theScale;
 
-		/*This basically flips link so that 2 mirroed links didn't need to be drawn*/
 	}//Flip
 
+	public void SwordBoxAttack()
+	{
+		swordBox.offset = new Vector2(0.22f, 0.06f);
+		swordBox.size = new Vector2(0.40f, 0.06f);
+	}//SwordBox
 
+	public void SwordBoxRetract()
+	{
+		swordBox.offset = new Vector2(-0.05f, 0.06f);
+		swordBox.size = new Vector2(0.25f, 0.06f);
+	}//SwordBoxRetract
+	
 }
