@@ -105,7 +105,13 @@ public class LinkControllerScript : MonoBehaviour {
 				movement = true;
 		}
 
-		if ((crouch && grounded && !attack) || rising) {
+		if(crouch){
+			movement = false;
+			GetComponent<Rigidbody2D>().velocity = new Vector2 (0, GetComponent<Rigidbody2D>().velocity.y);
+			move = 0;
+		}//f
+
+		if (rising) {
 			//I change the size of link's collider and shift the shield collider down
 			//I also set the horizontal movement to 0.
 			linkBox.size = new Vector2(0.14f, 0.25f);
@@ -150,7 +156,7 @@ public class LinkControllerScript : MonoBehaviour {
 		/*I am in a similar boat with this. It will neeed to be changed but I'm too busy
 		 getting the animations not to suck. These last two ifs are for the attack btw*/
 
-		if(Input.GetKeyDown (KeyCode.L)&&grounded){
+		if(Input.GetKeyDown (KeyCode.L) && grounded && !crouch){
 			attack = true;
 			attackOnce = Time.time;
 		}			
@@ -167,11 +173,6 @@ public class LinkControllerScript : MonoBehaviour {
 			attack = false;
 			movement = true;
 		}//if
-
-		if ((Time.time - attackOnce) >= (attackTime/2)){
-			swordBox.offset = new Vector2(-0.05f, 0.06f);
-		}//
-
 
 	}//Update
 
@@ -195,14 +196,22 @@ public class LinkControllerScript : MonoBehaviour {
 
 	public void SwordBoxAttack()
 	{
-		swordBox.offset = new Vector2(0.22f, 0.06f);
+		swordBox.offset = new Vector2(0.22f, 0.08f);
 		swordBox.size = new Vector2(0.40f, 0.06f);
 	}//SwordBox
 
 	public void SwordBoxRetract()
 	{
-		swordBox.offset = new Vector2(-0.05f, 0.06f);
-		swordBox.size = new Vector2(0.25f, 0.06f);
+		swordBox.offset = new Vector2(-0.11f, 0f);
+		swordBox.size = new Vector2(0.12f, 0.06f);
 	}//SwordBoxRetract
-	
+
+	public void ColliderCrouch()
+	{
+		linkBox.size = new Vector2(0.14f, 0.25f);
+		linkBox.offset = new Vector2(0.0f, -0.02f);
+		shieldBox.offset = new Vector2(0.04f, -0.09f);
+	}//Jumping shield  animation
+
+
 }
