@@ -16,6 +16,7 @@ public class LinkControllerScript : MonoBehaviour {
 	public float maxSpeed = 10f;
 	public float jumpForce = 700f;
 	public float gravity = -9.8f;
+	public static int flip = -1;
 
 	/*Most of these are variables accessed by the Animator*/
 	bool grounded = false;
@@ -191,7 +192,7 @@ public class LinkControllerScript : MonoBehaviour {
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
-
+		flip *= -1;
 	}//Flip
 
 	public void SwordBoxAttack()

@@ -6,6 +6,8 @@ public class SwordScript : MonoBehaviour {
 	public BoxCollider2D Sword;
 	public GameObject Link;
 
+	int flip = LinkControllerScript.flip;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -19,8 +21,9 @@ public class SwordScript : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D col)
 	{
 		if (col.gameObject.tag == "Block"){
-			//Destroy(col.gameObject);
-			print ("This shouldn't be here");
+			Destroy(col.gameObject);
+			flip = LinkControllerScript.flip;
+			Link.GetComponent<Rigidbody2D>().AddForce(new Vector2(200f*flip, 0f));
 		}//if
 		
 	}//OnCollisionEnter
